@@ -4,21 +4,29 @@ services:
   mysql:
     image: mysql:8.4
     container_name: mysql_hospitales
-
     restart: unless-stopped
-
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: monitoreo_hospitales
       MYSQL_USER: admlinux
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-
     ports:
       - "127.0.0.1:3306:3306"
-
     volumes:
       - mysql_data:/var/lib/mysql
       - ./mysql/init:/docker-entrypoint-initdb.d:ro
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: phpmyadmin_hospitales
+    restart: unless-stopped
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+    ports:
+      - "127.0.0.1:8085:80"
+    depends_on:
+      - mysql
 
 volumes:
   mysql_data:
