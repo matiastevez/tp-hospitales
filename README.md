@@ -1,4 +1,4 @@
-# Monitoreo de Temperaturas Hospitalarias
+# Base de datos personalizada MySQL
 
 Trabajo práctico de Administración de Sistemas GNU/Linux y Virtualización Avanzada.
 
